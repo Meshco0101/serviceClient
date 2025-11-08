@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="12dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/tvVehicleTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Toyota Corolla (2018)"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvVehicleSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reg: ABC1234 • VIN: XXXXXXXXXXXXXXX"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"/>
+</LinearLayout>

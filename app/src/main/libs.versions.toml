@@ -1,0 +1,51 @@
+toml
+# INCORRECT - Do not use platform() inside the version catalog
+firebase-bom = { group = "platform('com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+xplatform_com-firebase-bom = { group = "(platform(", name = "firebase-bom", version.ref = "firebaseBomVersion" }
+xplatform_com-google-firebase-firebase-bom = { group = "(platform(", name = "firebase-bom", version.ref = "xplatform_comFirebaseBom" }
+platform_com-firebase-bom = { group = "platform(", name = "firebase-bom", version.ref = "platform_comFirebaseBom" }[versions]
+agp = "8.13.0"
+# Renamed for clarity and consistency
+firebaseBom = "34.5.0"
+googleServices = "4.4.4"
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+appcompat = "1.7.1"
+material = "1.13.0"
+activity = "1.11.0"
+constraintlayout = "2.2.1"
+# Individual Firebase versions are not needed when using the BoM
+# firebaseAuth = "24.0.1"
+# firebaseFirestore = "26.0.2"
+# firebaseStorage = "22.0.1"
+# firebaseMessaging = "25.0.1"
+# firebaseAnalytics = "23.0.0"
+
+[libraries]
+# --- CORE & UI ---
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+# --- FIREBASE ---
+# This is the correct and ONLY entry you need for the Firebase BoM
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+
+# Individual libraries WITHOUT versions. The BoM controls their versions.
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+firebase-storage = { group = "com.google.firebase", name = "firebase-storage" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging" }
+
+# --- GRADLE PLUGINS ---
+google-services-plugin = { module = "com.google.gms:google-services", version.ref = "googleServices" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }

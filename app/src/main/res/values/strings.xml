@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CarServiceClient</string>
+    <string-array name="service_types">
+        <item>Oil Change</item>
+        <item>Brake Inspection</item>
+        <item>Engine Diagnostics</item>
+        <item>Battery Replacement</item>
+        <item>Tyre Change</item>
+        <item>Full Maintenance</item>
+    </string-array>
+
+</resources>
