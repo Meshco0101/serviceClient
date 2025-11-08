@@ -21,11 +21,14 @@
             android:exported="false" />
         <activity
             android:name=".activities.DashboardActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity android:name=".activities.BookServiceActivity"/>
+        <activity android:name=".activities.InvoiceListActivity"
+            android:exported="true"
+            android:label="Invoices"/>
         <activity
             android:name=".activities.LoginActivity"
             android:exported="true">

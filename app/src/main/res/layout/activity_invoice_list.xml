@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="16dp"
+    android:background="@android:color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activities.InvoiceListActivity">
 
     <TextView
         android:text="Invoices"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvInvoices"
+        android:id="@+id/recyclerViewInvoices"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp"
+        tools:listitem="@layout/item_invoice" />
+
 </LinearLayout>
