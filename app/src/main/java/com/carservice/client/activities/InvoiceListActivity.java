@@ -36,9 +36,10 @@ public class InvoiceListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewInvoices);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //To add Temporary list for demo purposes
+        // Temporary list for demo purposes
         invoiceList = new ArrayList<>();
-
+        //invoiceList.add(new Invoice("SVC-001", 1200.50, true, System.currentTimeMillis()));
+        //invoiceList.add(new Invoice("SVC-002", 850.00, false, System.currentTimeMillis()));
 
         adapter = new InvoiceAdapter(this, invoiceList);
         recyclerView.setAdapter(adapter);
