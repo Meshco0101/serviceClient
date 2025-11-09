@@ -41,6 +41,7 @@ public class VehicleListActivity extends AppCompatActivity {
 
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new VehicleAdapter(vehicles, vehicle -> {
+            Toast.makeText(this, "Booking" + vehicle.getMake(), Toast.LENGTH_SHORT).show();
             // on item click — open detail or booking flow
             Intent intent = new Intent(this, BookServiceActivity.class);
             intent.putExtra("vehicleId", vehicle.getId());

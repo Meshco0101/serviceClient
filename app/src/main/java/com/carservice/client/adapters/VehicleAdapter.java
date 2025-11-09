@@ -13,6 +13,7 @@ import java.util.List;
 import android.widget.Button;
 
 
+
 public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
 
     public interface OnItemClick {

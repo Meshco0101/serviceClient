@@ -4,7 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground">
+    android:background="@android:color/white"
+    android:clickable="false"
+    android:focusable="false">
 
     <TextView
         android:id="@+id/tvVehicleTitle"
@@ -18,7 +20,7 @@
         android:id="@+id/tvVehicleSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reg: ABC1234 • VIN: XXXXXXXXXXXXXXX"
+        android:text="Reg: AB 12 CD GP • VIN: XXXXXXXXXXXXXXX"
         android:textSize="14sp"
         android:layout_marginTop="4dp"/>
     <Button
@@ -29,6 +31,8 @@
     android:background="@color/purple_500"
     android:textColor="@android:color/white"
     android:padding="8dp"
-    android:layout_marginTop="6dp"/>
+    android:layout_marginTop="6dp"
+    android:clickable="true"
+    android:focusable="true"/>
 
 </LinearLayout>
