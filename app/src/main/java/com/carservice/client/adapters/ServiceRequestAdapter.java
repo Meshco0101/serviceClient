@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.carservice.client.R;
 import com.carservice.client.models.ServiceRequest;
-
 import java.util.ArrayList;
 import java.util.List;
 

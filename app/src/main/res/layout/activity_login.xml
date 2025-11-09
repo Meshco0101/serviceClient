@@ -6,11 +6,9 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="24dp"
-    android:background="#f80d0dff">
+    android:background="#f5ededff">
 
     <!-- App Title -->
-
-    <!-- Email Field -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -28,6 +26,7 @@
         android:inputType="textEmailAddress"
         android:padding="12dp"
         android:background="@android:drawable/edit_text"
+        android:textColor="@android:color/black"
         android:drawableStart="@android:drawable/ic_dialog_email"
         android:drawablePadding="10dp"
         android:layout_marginBottom="16dp"/>
@@ -41,6 +40,7 @@
         android:inputType="textPassword"
         android:padding="12dp"
         android:background="@android:drawable/edit_text"
+        android:textColor="@android:color/black"
         android:drawableStart="@android:drawable/ic_lock_lock"
         android:drawablePadding="10dp"
         android:layout_marginBottom="22dp"/>
@@ -53,9 +53,9 @@
         android:background="@android:color/holo_blue_dark"
         android:text="Login"
         android:textAllCaps="false"
-        android:textColor="#212121" />
+        android:textColor="#eee9e9ff" />
 
-    <!-- Register Link -->
+    <!-- create account -->
     <TextView
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"

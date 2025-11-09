@@ -13,6 +13,14 @@
         android:text="My Vehicles"
         android:textAllCaps="false"
         android:layout_marginBottom="16dp"/>
+    
+    <!--<Button
+        android:id="@+id/btnBookService"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Book Car For Service"
+        android:textAllCaps="false"
+        android:layout_marginBottom="16dp"/> -->
 
     <Button
         android:id="@+id/btnMyServices"

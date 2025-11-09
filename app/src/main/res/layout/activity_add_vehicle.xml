@@ -45,13 +45,14 @@
           android:layout_width="match_parent"
           android:layout_height="48dp"
           android:hint="VIN (17 characters)"
-          android:layout_marginBottom="8dp" />
+          android:layout_marginBottom="8dp"
+          android:inputType="number" />
 
       <EditText
           android:id="@+id/etReg"
           android:layout_width="match_parent"
           android:layout_height="48dp"
-          android:hint="Registration number"
+          android:hint="Registration (e.g., AB 12 CD GP)"
           android:layout_marginBottom="16dp" />
 
       <Button

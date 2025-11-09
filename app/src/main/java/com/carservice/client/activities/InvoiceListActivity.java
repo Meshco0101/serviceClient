@@ -1,102 +1,62 @@
 package com.carservice.client.activities;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.os.Bundle;
+import android.widget.Toast;
 
 import com.carservice.client.R;
+import com.carservice.client.adapters.InvoiceAdapter;
 import com.carservice.client.models.Invoice;
+import com.carservice.client.utils.FirebaseUtils;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class InvoiceListActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private InvoiceAdapter adapter;
-    private List<Invoice> invoiceList;
+    RecyclerView rvInvoices;
+    InvoiceAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice_list);
 
-        recyclerView = findViewById(R.id.recyclerViewInvoices);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        rvInvoices = findViewById(R.id.recyclerViewInvoices);
+        rvInvoices.setLayoutManager(new LinearLayoutManager(this));
 
-        // Temporary list for demo purposes
-        invoiceList = new ArrayList<>();
-        //invoiceList.add(new Invoice("SVC-001", 1200.50, true, System.currentTimeMillis()));
-        //invoiceList.add(new Invoice("SVC-002", 850.00, false, System.currentTimeMillis()));
+        adapter = new InvoiceAdapter(this);
+        rvInvoices.setAdapter(adapter);
 
-        adapter = new InvoiceAdapter(this, invoiceList);
-        recyclerView.setAdapter(adapter);
+        loadInvoices();
     }
 
-
-    static class InvoiceAdapter extends RecyclerView.Adapter<InvoiceAdapter.InvoiceViewHolder> {
-
-        private final Context context;
-        private List<Invoice> items;
-
-        public InvoiceAdapter(Context context, List<Invoice> items) {
-            this.context = context;
-            this.items = items;
+    private void loadInvoices() {
+        String uid = FirebaseUtils.getUid();
+        if (uid == null) {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        @NonNull
-        @Override
-        public InvoiceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(context).inflate(R.layout.item_invoice, parent, false);
-            return new InvoiceViewHolder(v);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull InvoiceViewHolder holder, int position) {
-            Invoice inv = items.get(position);
-
-            holder.tvTitle.setText("Service ID: " + inv.getServiceId());
-            holder.tvAmount.setText("R" + inv.getTotalCost());
-            holder.tvStatus.setText(inv.isPaid() ? "PAID" : "NOT PAID");
-
-            String date = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
-                    .format(new Date(inv.getTimestamp()));
-            holder.tvDate.setText(date);
-
-            holder.itemView.setOnClickListener(v -> {
-                Intent i = new Intent(context, InvoiceDetailsActivity.class);
-                i.putExtra("invoice", inv);
-                context.startActivity(i);
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return items.size();
-        }
-
-        static class InvoiceViewHolder extends RecyclerView.ViewHolder {
-            TextView tvTitle, tvAmount, tvStatus, tvDate;
-
-            public InvoiceViewHolder(@NonNull View itemView) {
-                super(itemView);
-                tvTitle = itemView.findViewById(R.id.tvInvoiceTitle);
-                tvAmount = itemView.findViewById(R.id.tvInvoiceCost);
-                tvStatus = itemView.findViewById(R.id.tvInvoiceStatus);
-                tvDate = itemView.findViewById(R.id.tvInvoiceDate);
-            }
-        }
+        FirebaseUtils.getFirestore()
+                .collection("invoices")
+                .whereEqualTo("userId", uid)
+                .get()
+                .addOnSuccessListener((QuerySnapshot snap) -> {
+                    List<Invoice> list = new ArrayList<>();
+                    for (QueryDocumentSnapshot doc : snap) {
+                        Invoice inv = doc.toObject(Invoice.class);
+                        inv.setId(doc.getId());
+                        list.add(inv);
+                    }
+                    adapter.setItems(list);
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Failed to load invoices: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                );
     }
 }

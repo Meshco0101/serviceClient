@@ -20,6 +20,7 @@ public class DashboardActivity extends AppCompatActivity {
         btnLogout = findViewById(R.id.btnLogout);
         btnMyServices = findViewById(R.id.btnMyServices);
         btnMyInvoices = findViewById(R.id.btnMyInvoices);
+        //btnSubmit = findViewById(R.id.btnSubmitRequest);
 
         // vehicle list button
         btnMyVehicles.setOnClickListener(v -> {

@@ -2,13 +2,14 @@ package com.carservice.client.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.*;
 import com.carservice.client.R;
 import com.carservice.client.models.ServiceRequest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.Date;
+
 
 public class BookServiceActivity extends AppCompatActivity {
 
@@ -40,19 +41,24 @@ public class BookServiceActivity extends AppCompatActivity {
         String serviceType = spServiceType.getSelectedItem().toString();
         String desc = etDescription.getText().toString().trim();
 
-        if (TextUtils.isEmpty(desc)) {
-            etDescription.setError("Required");
-            return;
-        }
-
         String uid = auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : null;
         if (uid == null) {
             Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        ServiceRequest request = new ServiceRequest(uid, vehicleId, serviceType, desc);
-        DocumentReference docRef = db.collection("serviceRequests").document();
+        // Build request model
+        ServiceRequest request = new ServiceRequest();
+        request.setUserId(uid);
+        request.setVehicleId(vehicleId);
+        request.setServiceType(serviceType);
+        request.setDescription(desc);
+        request.setStatus("pending");
+        request.setCreatedAt(new Date());
+
+
+
+        DocumentReference docRef = db.collection("service_requests").document();
         request.setId(docRef.getId());
 
         docRef.set(request)

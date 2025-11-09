@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CarServiceClient">
-        <activity android:name=".activities.ServiceListActivity" />
 
+        <activity android:name=".activities.ServiceListActivity" />
         <activity
             android:name=".activities.VehicleListActivity"
             android:exported="false" />
@@ -25,7 +25,7 @@
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="false" />
-        <activity android:name=".activities.BookServiceActivity"/>
+        <activity android:name=".activities.BookServiceActivity" />
         <activity android:name=".activities.InvoiceListActivity"
             android:exported="true"
             android:label="Invoices"/>
@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".services.MyFirebaseMessagingService"
+            android:name=".services.cFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

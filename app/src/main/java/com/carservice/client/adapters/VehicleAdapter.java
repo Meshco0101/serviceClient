@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.carservice.client.R;
 import com.carservice.client.models.Vehicle;
 import java.util.List;
+import android.widget.Button;
+
 
 public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
 
@@ -36,12 +38,15 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
         Vehicle v = items.get(position);
+
         holder.tvTitle.setText(v.getMake() + " " + v.getModel() + " (" + v.getYear() + ")");
         holder.tvSubtitle.setText("Reg: " + v.getRegistrationNumber() + " • VIN: " + v.getVin());
-        holder.itemView.setOnClickListener(view -> {
+
+        holder.btnBook.setOnClickListener(view -> {
             if (listener != null) listener.onClick(v);
         });
     }
+
 
     @Override
     public int getItemCount() {
@@ -56,10 +61,13 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
 
     static class VH extends RecyclerView.ViewHolder {
         TextView tvTitle, tvSubtitle;
+        Button btnBook;
         VH(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvVehicleTitle);
             tvSubtitle = itemView.findViewById(R.id.tvVehicleSubtitle);
+            btnBook = itemView.findViewById(R.id.btnBook);
         }
     }
+
 }

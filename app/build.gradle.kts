@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.inappmessaging.display)
+    implementation("com.google.android.gms:play-services-auth:21.2.0") // Add this line
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
