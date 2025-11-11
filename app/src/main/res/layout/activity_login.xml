@@ -6,9 +6,8 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="24dp"
-    android:background="#f5ededff">
+    android:background="#F846468E">
 
-    <!-- App Title -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -26,36 +25,54 @@
         android:inputType="textEmailAddress"
         android:padding="12dp"
         android:background="@android:drawable/edit_text"
-        android:textColor="@android:color/black"
         android:drawableStart="@android:drawable/ic_dialog_email"
         android:drawablePadding="10dp"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Password Field -->
-    <EditText
-        android:id="@+id/etPassword"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="12dp"
         android:background="@android:drawable/edit_text"
-        android:textColor="@android:color/black"
-        android:drawableStart="@android:drawable/ic_lock_lock"
-        android:drawablePadding="10dp"
-        android:layout_marginBottom="22dp"/>
+        android:gravity="center_vertical">
 
-    <!-- Login Button -->
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="4"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:background="@android:color/transparent"
+            android:padding="12dp"/>
+
+        <ImageView
+            android:id="@+id/btnTogglePassword"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@android:drawable/ic_menu_view"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_gravity="end"
+        android:paddingTop="8dp"/>
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/holo_blue_dark"
         android:text="Login"
         android:textAllCaps="false"
-        android:textColor="#eee9e9ff" />
+        android:textColor="#212121" />
 
-    <!-- create account -->
     <TextView
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
