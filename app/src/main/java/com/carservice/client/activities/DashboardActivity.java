@@ -4,8 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.carservice.client.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -15,6 +20,23 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        // user welcome & settings
+        TextView tvWelcome = findViewById(R.id.tvWelcome);
+        ImageView btnSettings = findViewById(R.id.btnSettings);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore.getInstance().collection("users")
+                .document(user.getUid())
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    String name = documentSnapshot.getString("firstname");
+                    tvWelcome.setText("Welcome, " + name);
+                });
+        btnSettings.setOnClickListener(v ->
+                startActivity(new Intent(DashboardActivity.this, SettingsActivity.class))
+        );
+
 
         btnMyVehicles = findViewById(R.id.btnMyVehicles);
         btnLogout = findViewById(R.id.btnLogout);

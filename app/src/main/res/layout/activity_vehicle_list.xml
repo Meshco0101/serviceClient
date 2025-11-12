@@ -6,10 +6,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:text="My Vehicles"
         android:textSize="22sp"
-        android:textStyle="bold"
-        android:padding="16dp"/>
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvVehicles"

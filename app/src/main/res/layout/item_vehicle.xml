@@ -23,16 +23,17 @@
         android:text="Reg: AB 12 CD GP • VIN: XXXXXXXXXXXXXXX"
         android:textSize="14sp"
         android:layout_marginTop="4dp"/>
+
     <Button
-    android:id="@+id/btnBook"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Book Car For Service"
-    android:background="@color/purple_500"
-    android:textColor="@android:color/white"
-    android:padding="8dp"
-    android:layout_marginTop="6dp"
-    android:clickable="true"
-    android:focusable="true"/>
+        android:id="@+id/btnBook"
+        android:layout_width="205dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="@color/purple_500"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        android:text="Book Car For Service"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

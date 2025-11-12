@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText etFirstName, etLastName, etEmail, etPhone, etPassword;
+    EditText etFirstName, etLastName, etEmail, etPhone, etPassword, etConfirmPassword;
     ImageView btnTogglePassword;
     Button btnRegister;
     FirebaseAuth auth;
@@ -53,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnTogglePassword = findViewById(R.id.btnTogglePassword);
         btnRegister = findViewById(R.id.btnRegister);
+        etConfirmPassword = findViewById(R.id.etConfirmPassword);
 
         // Password rule labels
         ruleLength = findViewById(R.id.ruleLength);
@@ -61,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         ruleNumber = findViewById(R.id.ruleNumber);
         ruleSpecial = findViewById(R.id.ruleSpecial);
 
-        // Strength meter widgets
+        // password strength meter
         tvPasswordStrength = findViewById(R.id.tvPasswordStrength);
         strengthBar = findViewById(R.id.strengthBar);
 
@@ -152,13 +153,24 @@ public class RegisterActivity extends AppCompatActivity {
         String email = etEmail.getText().toString().trim();
         String phone = etPhone.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+        String confirmPass = etConfirmPassword.getText().toString().trim();
+
 
         // Validation
         if (!isValidName(first)) { etFirstName.setError("Invalid name"); return; }
         if (!isValidName(last)) { etLastName.setError("Invalid surname"); return; }
         if (!isEmailValid(email)) { etEmail.setError("Invalid email"); return; }
         if (!isValidPhone(phone)) { etPhone.setError("Invalid phone"); return; }
-        if (!isPasswordValid(password)) { Toast.makeText(this, "Password must meet requirements", Toast.LENGTH_SHORT).show(); return; }
+
+        if (!password.equals(confirmPass)) {
+            etConfirmPassword.setError("Passwords do not match");
+            return; }
+        if (!isPasswordValid(password)) {
+            Toast.makeText(this, "Password must meet requirements", Toast.LENGTH_SHORT).show();
+            return; }
+
+        if (rgVerificationMethod.getCheckedRadioButtonId() == -1) { Toast.makeText(this, "Select verification method", Toast.LENGTH_SHORT).show(); return; }
+
 
         // Determine OTP method
         boolean emailMethod = rbEmailOTP.isChecked();

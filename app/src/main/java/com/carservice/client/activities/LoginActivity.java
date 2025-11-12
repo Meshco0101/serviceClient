@@ -72,6 +72,9 @@ public class LoginActivity extends AppCompatActivity {
         // Go to register screen
         tvRegister.setOnClickListener(v ->
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
+
+        btnTogglePass.setOnClickListener(v ->
+                startActivity(new  Intent(LoginActivity.this, ForgotPasswordActivity.class)));
     }
 
     private void checkLockStatus() {
