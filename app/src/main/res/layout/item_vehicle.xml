@@ -4,9 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    android:clickable="false"
-    android:focusable="false">
+    android:background="?android:attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/tvVehicleTitle"
@@ -24,16 +22,46 @@
         android:textSize="14sp"
         android:layout_marginTop="4dp"/>
 
+    <!-- BOOK BUTTON -->
     <Button
         android:id="@+id/btnBook"
-        android:layout_width="205dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:background="@color/purple_500"
-        android:clickable="true"
-        android:focusable="true"
-        android:padding="8dp"
         android:text="Book Car For Service"
-        android:textColor="@android:color/white" />
+        android:background="@color/purple_500"
+        android:textColor="@android:color/white"
+        android:padding="8dp"
+        android:layout_marginTop="6dp"/>
+
+    <!-- EDIT + DELETE ROW -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp">
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Edit"
+            android:background="@android:color/holo_blue_dark"
+            android:textColor="@android:color/white"/>
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Delete"
+            android:background="@android:color/holo_red_dark"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
 
 </LinearLayout>
