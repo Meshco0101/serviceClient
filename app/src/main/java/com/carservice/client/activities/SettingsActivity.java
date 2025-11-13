@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -69,17 +70,22 @@ public class SettingsActivity extends AppCompatActivity {
         db.collection("users").document(uid).update(map);
 
         // Update Firebase Authentication Email
-        auth.getCurrentUser().updateEmail(newEmail)
-                .addOnSuccessListener(unused ->
-                        Toast.makeText(this, "Profile updated!", Toast.LENGTH_SHORT).show()
-                )
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Auth update failed: " + e.getMessage(), Toast.LENGTH_LONG).show()
-                );
+        assert auth.getCurrentUser() != null;
+        if (auth.getCurrentUser() != null) {
+            auth.getCurrentUser().verifyBeforeUpdateEmail(newEmail)
+                    .addOnSuccessListener(unused ->
+                            Toast.makeText(this, "Verification email sent to new address. Check your inbox!", Toast.LENGTH_LONG).show()
+                    )
+                    .addOnFailureListener(e ->
+                            Toast.makeText(this, "Email update failed: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                    );
+        }
+
     }
 
     private void updatePassword() {
-        auth.sendPasswordResetEmail(auth.getCurrentUser().getEmail())
+        assert auth.getCurrentUser() != null;
+        auth.sendPasswordResetEmail(Objects.requireNonNull(auth.getCurrentUser().getEmail()))
                 .addOnSuccessListener(x ->
                         Toast.makeText(this, "Password reset email sent", Toast.LENGTH_SHORT).show()
                 )

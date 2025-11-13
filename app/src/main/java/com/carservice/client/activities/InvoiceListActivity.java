@@ -3,13 +3,16 @@ package com.carservice.client.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.carservice.client.R;
 import com.carservice.client.adapters.InvoiceAdapter;
 import com.carservice.client.models.Invoice;
 import com.carservice.client.utils.FirebaseUtils;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -19,6 +22,7 @@ import java.util.List;
 public class InvoiceListActivity extends AppCompatActivity {
 
     RecyclerView rvInvoices;
+    TextView tvEmpty;
     InvoiceAdapter adapter;
 
     @Override
@@ -27,12 +31,16 @@ public class InvoiceListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_invoice_list);
 
         rvInvoices = findViewById(R.id.recyclerViewInvoices);
-        rvInvoices.setLayoutManager(new LinearLayoutManager(this));
+        tvEmpty = new TextView(this);
+        tvEmpty.setText("No invoices found");
+        tvEmpty.setTextSize(16f);
+        tvEmpty.setPadding(20, 40, 20, 20);
 
+        rvInvoices.setLayoutManager(new LinearLayoutManager(this));
         adapter = new InvoiceAdapter(this);
         rvInvoices.setAdapter(adapter);
-
         loadInvoices();
+
     }
 
     private void loadInvoices() {
@@ -45,6 +53,7 @@ public class InvoiceListActivity extends AppCompatActivity {
         FirebaseUtils.getFirestore()
                 .collection("invoices")
                 .whereEqualTo("userId", uid)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener((QuerySnapshot snap) -> {
                     List<Invoice> list = new ArrayList<>();
@@ -54,6 +63,10 @@ public class InvoiceListActivity extends AppCompatActivity {
                         list.add(inv);
                     }
                     adapter.setItems(list);
+
+                    if (list.isEmpty()) {
+                        Toast.makeText(this, "No invoices yet.", Toast.LENGTH_SHORT).show();
+                    }
                 })
                 .addOnFailureListener(e ->
                         Toast.makeText(this, "Failed to load invoices: " + e.getMessage(), Toast.LENGTH_LONG).show()

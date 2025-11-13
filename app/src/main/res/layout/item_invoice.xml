@@ -1,37 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground">
+    android:orientation="vertical"
+    android:padding="14dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/bg_invoice_card"
+    android:elevation="3dp">
 
+<TextView
+    android:id="@+id/tvInvoiceTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Invoice"
+    android:textSize="18sp"
+    android:textStyle="bold"/>
+
+    <!-- Reference / Invoice No -->
     <TextView
-        android:id="@+id/tvInvoiceTitle"
-        android:text="Service Invoice"
+        android:id="@+id/tvInvoiceRef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ref: INV001"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textColor="#000000"/>
 
-    <TextView
-        android:id="@+id/tvInvoiceCost"
-        android:text="R3500"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"/>
-
-    <TextView
-        android:id="@+id/tvInvoiceStatus"
-        android:text="Status: UNPAID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"/>
-        
+    <!-- Date -->
     <TextView
         android:id="@+id/tvInvoiceDate"
-        android:text="Date: 2024-06-15"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"/>
+        android:text="14 Feb 2025"
+        android:textSize="13sp"
+        android:textColor="#666666"
+        android:layout_marginTop="4dp"/>
+
+    <Button
+        android:id="@+id/btnPay"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Pay Now"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/teal_700"
+        android:textColor="@android:color/white"
+        android:paddingHorizontal="12dp" />
+
+
+    <!-- Amount -->
+    <TextView
+        android:id="@+id/tvInvoiceCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="R3500.00"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_green_dark"
+        android:layout_marginTop="6dp"/>
+
+    <!-- Status -->
+    <TextView
+        android:id="@+id/tvInvoiceStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UNPAID"
+        android:textSize="14sp"
+        android:textColor="#D32F2F"
+        android:layout_marginTop="3dp"/>
+
 </LinearLayout>

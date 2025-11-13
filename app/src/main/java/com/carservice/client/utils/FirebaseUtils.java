@@ -15,4 +15,7 @@ public class FirebaseUtils {
     public static FirebaseFirestore getFirestore() {
         return FirebaseFirestore.getInstance();
     }
+    public static void logout() {
+        FirebaseAuth.getInstance().signOut();
+    }
 }

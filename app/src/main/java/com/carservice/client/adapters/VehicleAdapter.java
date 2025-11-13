@@ -57,8 +57,9 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VH> {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setItems(List<Vehicle> items) {
-        this.items = items;
+    public void setItems(List<Vehicle> newList) {
+        this.items.clear();
+        this.items.addAll(newList);
         notifyDataSetChanged();
     }
 

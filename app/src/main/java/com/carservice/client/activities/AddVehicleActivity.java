@@ -41,7 +41,7 @@ public class AddVehicleActivity extends AppCompatActivity {
         String make = etMake.getText().toString().trim();
         String model = etModel.getText().toString().trim();
         String yearStr = etYear.getText().toString().trim();
-        String vin = etVIN.getText().toString().trim();
+        String vin = etVIN.getText().toString().trim().toUpperCase();
         String reg = etReg.getText().toString().trim();
 
         if (TextUtils.isEmpty(make)) { etMake.setError("Required"); return; }
@@ -70,8 +70,6 @@ public class AddVehicleActivity extends AppCompatActivity {
                     Toast.makeText(this, "Vehicle saved", Toast.LENGTH_SHORT).show();
                     finish();
                 })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                });
+                .addOnFailureListener(e -> Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show());
     }
 }

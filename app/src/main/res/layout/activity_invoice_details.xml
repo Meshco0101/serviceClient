@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="15dp"
+    android:padding="18dp"
+    android:background="#FAFAFA"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,33 +10,124 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView android:id="@+id/tvMechanic"
-            android:textStyle="bold" android:textSize="18sp"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <!-- Invoice Ref -->
+        <TextView
+            android:id="@+id/tvInvoiceRef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ref: INV001"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp"/>
 
-        <TextView android:text="Work Done:" android:textStyle="bold"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <TextView android:id="@+id/tvWork"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"/>
+        <!-- Mechanic -->
+        <TextView
+            android:text="Mechanic"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-        <TextView android:text="Parts Used:" android:textStyle="bold"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-        <TextView android:id="@+id/tvParts"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"/>
+        <TextView
+            android:id="@+id/tvMechanic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="John Motors"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp"/>
 
-        <TextView android:id="@+id/tvCost"
+        <!-- Date -->
+        <TextView
+            android:text="Date"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvInvoiceDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="14 Feb 2025"
+            android:textSize="15sp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Work Done -->
+        <TextView
+            android:text="Work Done"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvWork"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Oil change, brake service"/>
+
+        <!-- Parts -->
+        <TextView
+            android:text="Parts Used"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvParts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Oil Filter, Brake Pads"/>
+
+        <!-- Cost -->
+        <TextView
+            android:id="@+id/tvCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R3500.00"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#008000"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Status -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PAID"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            android:layout_marginTop="6dp"
+            android:textColor="#008000"/>
 
-        <TextView android:id="@+id/tvStatus"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <!-- Buttons -->
+        <Button
+            android:id="@+id/btnDownloadPDF"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Download Invoice PDF"
+            android:background="@android:color/holo_blue_dark"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/btnShareInvoice"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Share Invoice"
+            android:background="@android:color/holo_green_dark"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp" />
+        <Button
+            android:id="@+id/btnPayNow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_700"
+            android:layout_marginTop="10dp"
+            android:text="Pay Now"
+            android:textColor="@android:color/white"/>
+
+
     </LinearLayout>
 </ScrollView>

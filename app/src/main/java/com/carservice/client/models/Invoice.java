@@ -13,6 +13,10 @@ public class Invoice implements Serializable {
     private double totalCost;
     private long timestamp;
     private boolean paid;
+    private String mechanicId;
+    private String clientName;
+    private String referenceNumber;
+
 
     public Invoice() {}
 
@@ -46,4 +50,17 @@ public class Invoice implements Serializable {
 
     public boolean isPaid() { return paid; }
     public void setPaid(boolean paid) { this.paid = paid; }
+
+    public String getMechanicId() { return mechanicId; }
+    public void setMechanicId(String mechanicId) { this.mechanicId = mechanicId; }
+
+    public String getClientName() { return clientName; }
+    public void setClientName(String clientName) { this.clientName = clientName; }
+
+    public String getReferenceNumber() { return referenceNumber; }
+    public void setReferenceNumber(String referenceNumber) { this.referenceNumber = referenceNumber; }
+    public String getFormattedCost() {
+        return String.format("R%.2f", totalCost);
+    }
+
 }

@@ -8,5 +8,10 @@
         <item>Tyre Change</item>
         <item>Full Maintenance</item>
     </string-array>
+    <string name="invoice_ref">Ref: %1$s</string>
+    <string name="invoice_cost">R%1$.2f</string>
+    <string name="status_paid">PAID</string>
+    <string name="status_unpaid">UNPAID</string>
+    <string name="welcome_user">Welcome, %1$s</string>
 
 </resources>

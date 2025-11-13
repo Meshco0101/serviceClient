@@ -14,7 +14,7 @@ public class Vehicle {
     @ServerTimestamp
     private Date createdAt;
 
-    public Vehicle() {} // required for Firestore
+    public Vehicle() {} // for Firestore
 
     public Vehicle(String ownerId, String make, String model, int year, String vin, String registrationNumber) {
         this.ownerId = ownerId;

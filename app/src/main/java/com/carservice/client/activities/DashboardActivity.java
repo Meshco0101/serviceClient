@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.carservice.client.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,13 +27,19 @@ public class DashboardActivity extends AppCompatActivity {
         ImageView btnSettings = findViewById(R.id.btnSettings);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
         FirebaseFirestore.getInstance().collection("users")
                 .document(user.getUid())
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     String name = documentSnapshot.getString("firstname");
-                    tvWelcome.setText("Welcome, " + name);
-                });
+                    tvWelcome.setText(getString(R.string.welcome_user, name));
+                })
+                .addOnFailureListener(e -> Toast.makeText(this, "Failed to fetch user info", Toast.LENGTH_SHORT).show());
         btnSettings.setOnClickListener(v ->
                 startActivity(new Intent(DashboardActivity.this, SettingsActivity.class))
         );
@@ -45,9 +52,7 @@ public class DashboardActivity extends AppCompatActivity {
         //btnSubmit = findViewById(R.id.btnSubmitRequest);
 
         // vehicle list button
-        btnMyVehicles.setOnClickListener(v -> {
-            startActivity(new Intent(DashboardActivity.this, VehicleListActivity.class));
-        });
+        btnMyVehicles.setOnClickListener(v -> startActivity(new Intent(DashboardActivity.this, VehicleListActivity.class)));
 
         // services list button
         btnMyServices.setOnClickListener(v ->
