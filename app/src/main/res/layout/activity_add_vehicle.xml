@@ -19,6 +19,7 @@
 
       <EditText
           android:id="@+id/etMake"
+          android:layout_marginTop="16dp"
           android:layout_width="match_parent"
           android:layout_height="48dp"
           android:hint="Car Make/Brand"
